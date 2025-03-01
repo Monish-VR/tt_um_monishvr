@@ -30,6 +30,13 @@ module tt_um_vga_example(
     wire [9:0] pix_x, pix_y;
     wire [1:0] R, G, B;
 
+
+    assign uio_out = 0;
+    assign uio_oe  = 0;
+    assign uo_out[7:6] = 0;
+    assign uo_out[5:0] = {dout[3:0], empty, full};
+
+wire _unused = &{ena, ui_in[0], ui_in[1], uio_in[7:0]};
     // Pattern and color counters
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
