@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+It creates visuals of with octagonal shapes and complex patterns. Different colors to each layer make it visually appealing.
 
 ## How to test
 
-Explain how to use your project
+Just run the code and use 2-bit VGA to connect with the monitor.
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+2-bit VGA is needed to connect with the monitor.
