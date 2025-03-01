@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_vga_example(
+module tt_um_monish_mandala(
     input  wire [7:0] ui_in,
     output wire [7:0] uo_out,
     input  wire [7:0] uio_in,
@@ -30,13 +30,6 @@ module tt_um_vga_example(
     wire [9:0] pix_x, pix_y;
     wire [1:0] R, G, B;
 
-
-    assign uio_out = 0;
-    assign uio_oe  = 0;
-    assign uo_out[7:6] = 0;
-    assign uo_out[5:0] = {dout[3:0], empty, full};
-
-wire _unused = &{ena, ui_in[0], ui_in[1], uio_in[7:0]};
     // Pattern and color counters
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -64,9 +57,9 @@ wire _unused = &{ena, ui_in[0], ui_in[1], uio_in[7:0]};
     wire [7:0] angle_even = (delta_y[7:0] ^ delta_x[7:0]) - pattern_counter[3:0]; // Anti-clockwise
 
     // Layered pattern definitions with rotation
-    wire layer1 = (radius < 40) & ((angle_odd[4] + delta_y[2]) % 2 == pattern_counter[5]);
-    wire layer2 = (radius < 80 && radius >= 40) & ((angle_even[2] + radius[2]) % 2 == pattern_counter[1]);
-    wire layer3 = (radius < 120 && radius >= 80) & ((delta_x[4] ^ delta_y[4]) == pattern_counter[2]);
+    wire layer1 = (radius < 40) & ((angle_odd[5] + delta_y[2]) % 2 == pattern_counter[5]);
+    wire layer2 = (radius < 80 && radius >= 40) & ((angle_even[1] + radius[2]) % 2 == pattern_counter[1]);
+    wire layer3 = (radius < 120 && radius >= 80) & ((angle_even[6] + radius[2]) % 3 == pattern_counter[2]);
     wire layer4 = (radius < 160 && radius >= 120) & ((angle_even[5] & radius[5]) ^ pattern_counter[3]);
     wire layer5 = (radius < 200 && radius >= 160) & ((delta_x[6] + delta_y[6]) == pattern_counter[4]);
     wire layer6 = (radius < 240 && radius >= 200) & ((angle_even[3] + radius[3]) % 3 == pattern_counter[2]);
